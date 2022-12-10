@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 const router = require('./routes')
 const mongoose = require('mongoose');
-const db = `mongodb+srv://Web_Liter:Footbolist123@cluster0.eyxtsmd.mongodb.net/?retryWrites=true&w=majority`
+const db = `mongodb+srv://Web_Liter:${process.env.MONGO_DB_PASS}@cluster0.eyxtsmd.mongodb.net/?retryWrites=true&w=majority`
 const port = 8002;
 const server = require('http').createServer(app)
 const IntervalsService  = require('./service/IntervalsService');
