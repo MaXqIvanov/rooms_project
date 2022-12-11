@@ -24,8 +24,9 @@ export interface IRoom {
 }
 interface IRoomSlice{
   rooms: IRoom | object[],
-  current_room: {},
+  current_room: IRoom,
   current_time: number,
+  current_user_index: number,
   loading: boolean,
 }
 
@@ -33,13 +34,23 @@ const RoomsSlice = createSlice({
   name: 'rooms',
   initialState: {
     rooms: [],
-    current_room: {},
+    current_room: {} as IRoom,
     current_time: 0,
+    current_user_index: 0,
     loading: true as boolean,
   },
   reducers: {
     changeCurrentTime(state: IRoomSlice){
-      state.current_time !== 120 ? state.current_time = state.current_time + 1 : state.current_time = 0
+      if(state.current_time >= 120){
+        state.current_time = 0
+        if(state.current_user_index > state.current_room.users.length){
+          state.current_user_index = 0
+        }else {
+          state.current_user_index += 1;
+        }
+      }else{
+        state.current_time = state.current_time + 1
+      }
     }
   },
   extraReducers: (builder) => {
@@ -50,7 +61,8 @@ const RoomsSlice = createSlice({
       console.log(payload)
       state.loading = false
       state.current_time = payload.response.data.time
-      state.current_room = payload.response.data
+      state.current_room = payload.response.data.room
+      state.current_user_index = payload.response.data.user
     });
     builder.addCase(getCurrentRooms.rejected, (state: IRoomSlice) => {
       state.loading = false;
