@@ -18,10 +18,10 @@ class RoomController {
         try {
             const id = req.params.id
             console.log(id)
-            const {time, room} = await IntervalsService.getCurrentRoomTime(id)
-            // const room = await Rooms.findById({ _id: id })
+            const room = await Rooms.findById({ _id: id })
+            const {time, user} = await IntervalsService.getCurrentRoomTime(id)
             console.log(time)
-            return res.json({time, room})
+            return res.json({time, user, room})
         } catch (error) {
             return res.status(400).json({message: error})
         }

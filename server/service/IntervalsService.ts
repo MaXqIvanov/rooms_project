@@ -14,6 +14,7 @@ class IntervalsService {
 
     async intervalsServiceFunction(id: string){
         this.time[id] = 0
+        this.current_user[id] = 0
         this.intervals[id] = setInterval(async ()=> {
             // console.log(id)
             if(this.time[id] === 120){
@@ -48,7 +49,7 @@ class IntervalsService {
         return this.intervals
     }
     async getCurrentRoomTime(id: string){
-        return {time: this.time[id], user: this.current_user} 
+        return {time: this.time[id], user: this.current_user[id]} 
     }
 
    
