@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import roomSlice from './roomSlice';
+import roomSlice from './reducers/rooms/roomSlice';
 
 const rootReducer = combineReducers({
   rooms: roomSlice
