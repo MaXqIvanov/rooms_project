@@ -37,13 +37,13 @@ const RoomsSlice = createSlice({
     current_room: {} as IRoom,
     current_time: 0,
     current_user_index: 0,
-    loading: true as boolean,
+    loading: true,
   },
   reducers: {
     changeCurrentTime(state: IRoomSlice){
       if(state.current_time >= 120){
         state.current_time = 0
-        if(state.current_user_index > state.current_room.users.length){
+        if(state.current_user_index === state.current_room.users.length - 1){
           state.current_user_index = 0
         }else {
           state.current_user_index += 1;

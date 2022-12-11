@@ -11,7 +11,6 @@ export const RoomsPage = () => {
   const {current_time, current_room} = useSelector((state: RootState)=> state.rooms)
   const refTimer:any = useRef(null)
   useEffect(() => {
-    console.log(window.location.pathname.split('/'))
     dispatch(getCurrentRooms({id: window.location.pathname.split('/')[1]}))
     refTimer.current = setInterval(()=> {
         dispatch(changeCurrentTime())
@@ -20,6 +19,8 @@ export const RoomsPage = () => {
   },[])
   
   return (
-    <div>{`00:0${Math.floor(current_time / 60)}:${(current_time - Math.floor(current_time / 60) * 60) < 10 ? '0' + (current_time - Math.floor(current_time / 60) * 60) : current_time - Math.floor(current_time / 60) * 60}`}</div>
+    <div>
+      <div>{`00:0${Math.floor(current_time / 60)}:${(current_time - Math.floor(current_time / 60) * 60) < 10 ? '0' + (current_time - Math.floor(current_time / 60) * 60) : current_time - Math.floor(current_time / 60) * 60}`}</div>
+    </div>
   )
 }
