@@ -1,9 +1,10 @@
 import { Rooms } from "../models/rooms";
+import {Request, Response} from 'express'
 const IntervalsService  = require('../service/IntervalsService');
 
 class RoomController {
 
-    async getRooms(req: any, res: any) {
+    async getRooms(req: Request, res: Response) {
         try {
             const rooms = await Rooms.find()
             console.log(rooms)
@@ -14,10 +15,12 @@ class RoomController {
         }
 
     }
-    async getOneRoom(req:any, res:any){
+    async getOneRoom(req: Request, res: Response){
         try {
             const id = req.params.id
-            console.log(id)
+            if(IntervalsService.time[id] === undefined){
+                await IntervalsService.intervalsServiceFunction(id)
+            }
             const room = await Rooms.findById({ _id: id })
             const {time, user} = await IntervalsService.getCurrentRoomTime(id)
             console.log(time)
@@ -26,7 +29,7 @@ class RoomController {
             return res.status(400).json({message: error})
         }
     }
-    async createRooms(req: any, res: any){
+    async createRooms(req: Request, res: Response){
         try {
             const {name, title, users} = req.body
             const new_room = await Rooms.create({
@@ -41,7 +44,7 @@ class RoomController {
             return res.status(400).json({message: error})
         }
     }
-    async updateRooms(req: any, res :any){
+    async updateRooms(req: Request, res: Response){
         try {
             const {users} = req.body
             const id = req.params.id
@@ -71,7 +74,7 @@ class RoomController {
         }
     }
     
-    async deleteRoom(req:any, res:any){
+    async deleteRoom(req: Request, res: Response){
 
         try {
             const id = req.params.id

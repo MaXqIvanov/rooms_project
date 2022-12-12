@@ -6,19 +6,20 @@ import { getAllRooms, getCurrentRooms } from './actionRooms';
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
-export interface User {
+export interface IUser {
   _id: string;
   name: string;
   production_time: number;
   warranty_obligations: number;
   terms_of_payment: number;
   lot_price: number;
+  set_of_measures: string,
 }
 export interface IRoom {
   _id: string;
   name: string;
   title: string;
-  users: User[];
+  users: IUser[];
   current_user: number;
   __v: number;
 }
