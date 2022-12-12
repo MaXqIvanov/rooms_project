@@ -29,7 +29,7 @@ $title_color: rgb(0, 136, 255);
   box-sizing: border-box;
 }
 .room{
-  padding: 0 10px;
+  padding: 0 1vw;
   box-sizing: border-box; 
 }
 .room__title{
@@ -46,18 +46,19 @@ $title_color: rgb(0, 136, 255);
 }
 .separate_line{
   height: 2px;
+  max-height: 0.3vw;
   width: calc(100% + 20px);  
   margin-left: -10px;
   background-color: rgb(208, 208, 208);
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 1.5vw;
+  margin-bottom: 1.5vw;
 }
 
 .bidding{
   display: flex;
   height: fit-content;
   width: 100%;
-  margin-top: 80px;
+  margin-top: 7vw;
 }
 
 .bidding__info{
@@ -81,7 +82,7 @@ $title_color: rgb(0, 136, 255);
 }
 .bidding__info__timer{
   position: absolute;
-  top: -40px;
+  top: -3vw;
   left: 50%;
   font-size: 1.5vw;
   transform: translate(-50%, -50%);
@@ -89,7 +90,7 @@ $title_color: rgb(0, 136, 255);
   font-weight: 500;
 }
 .bidding__users__one_user{
-  width: 32.5%;
+  width: 33.2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,11 +100,12 @@ $title_color: rgb(0, 136, 255);
 .one_user__title{
   font-size: 1.5vw;
   color: $title_color;
-  height: 50px;
+  height: 4vw;
+  max-height: 4vw;
 }
 .bidding__users__timer{
   position: absolute;
-  top: -40px;
+  top: -3vw;
   left: 0px;
   transform: translate(0, -50%);
   background: rgb(255, 195, 195);
@@ -118,7 +120,7 @@ $title_color: rgb(0, 136, 255);
   color: rgb(150, 26, 26);
 }
 .bidding__info__title{
-  height: 50px;
+  height: 4vw;
   font-size: 1.5vw;
   color: $title_color;
   text-align: center;
@@ -127,7 +129,7 @@ $title_color: rgb(0, 136, 255);
   font-size: 1.1vw;
   color: $main_color;
   font-size: 500;
-  padding-left: 10px;
+  padding-left: 0.5vw;
   box-sizing: border-box;
   width: 100%;
 }
