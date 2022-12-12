@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
+import * as path from "path";
 require('dotenv').config()
 const cors = require('cors')
 const express = require('express');
-const path = require('path');
 const app = express();
 const router = require('./routes')
 const mongoose = require('mongoose');
@@ -17,7 +17,7 @@ app.use(express.json({limit: '100mb'}))
 app.use(express.urlencoded());
 app.use('/api', router)
 app.get('*', (req: Request, res: Response) => {
-    res.sendFile(`../client/build/index.html`);
+    res.sendFile(path.resolve("../") + "/client/build/index.html");
 });
 
 mongoose.connect(db).then((res: Response)=> console.log('Connect is success'))
