@@ -10,8 +10,12 @@ export const RoomsPage = () => {
   const dispatch = useAppDispatch()
   const {current_time, current_room, current_user_index} = useSelector((state: RootState)=> state.rooms)
   const refTimer:any = useRef(null)
+  const longPulling:any = useRef(null)
   useEffect(() => {
     dispatch(getCurrentRooms({id: window.location.pathname.split('/')[1]}))
+    longPulling.current = setInterval(()=>{
+      dispatch(getCurrentRooms({id: window.location.pathname.split('/')[1]}))
+    }, 30000)
     refTimer.current = setInterval(()=> {
         dispatch(changeCurrentTime())
     }, 1000)
