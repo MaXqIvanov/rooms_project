@@ -6,6 +6,6 @@
     "outDir": "./build",
     "esModuleInterop": true,
     "strict": true,
-    "lib": ["es6"]
+    "lib": ["es6"],
   }
 }

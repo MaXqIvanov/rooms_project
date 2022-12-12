@@ -54,6 +54,4 @@ class IntervalsService {
 
    
 }
-// 639488f07edc1457bad8a320
-// 639488f57edc1457bad8a322
 module.exports = new IntervalsService();

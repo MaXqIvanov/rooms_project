@@ -6,19 +6,20 @@ import { getAllRooms, getCurrentRooms } from './actionRooms';
 interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
-export interface User {
+export interface IUser {
   _id: string;
   name: string;
   production_time: number;
   warranty_obligations: number;
   terms_of_payment: number;
   lot_price: number;
+  set_of_measures: string,
 }
 export interface IRoom {
   _id: string;
   name: string;
   title: string;
-  users: User[];
+  users: IUser[];
   current_user: number;
   __v: number;
 }
@@ -37,13 +38,13 @@ const RoomsSlice = createSlice({
     current_room: {} as IRoom,
     current_time: 0,
     current_user_index: 0,
-    loading: true as boolean,
+    loading: true,
   },
   reducers: {
     changeCurrentTime(state: IRoomSlice){
       if(state.current_time >= 120){
         state.current_time = 0
-        if(state.current_user_index > state.current_room.users.length){
+        if(state.current_user_index === state.current_room.users.length - 1){
           state.current_user_index = 0
         }else {
           state.current_user_index += 1;

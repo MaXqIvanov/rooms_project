@@ -1,7 +1,8 @@
 import { Users } from "../models/users";
+import {Request, Response} from 'express'
 class UsersController {
 
-    async getUsers(req: any, res: any) {
+    async getUsers(req: Request, res: Response) {
         try {
             const user = await Users.find()
             console.log(user)
@@ -12,7 +13,7 @@ class UsersController {
         }
 
     }
-    async createUser(req: any, res: any){
+    async createUser(req: Request, res: Response){
         try {
             
         } catch (error) {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8002/',
+  baseURL: 'http://web-helpers.ru:5005/',
 });
 
 export default api;
