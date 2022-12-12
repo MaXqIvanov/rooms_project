@@ -7,7 +7,7 @@ const app = express();
 const router = require('./routes')
 const mongoose = require('mongoose');
 const db = `mongodb+srv://Web_Liter:${process.env.MONGO_DB_PASS}@cluster0.eyxtsmd.mongodb.net/?retryWrites=true&w=majority`
-const port = 5005;
+const port = 5006;
 const server = require('http').createServer(app)
 const IntervalsService  = require('./service/IntervalsService');
 export const io = require('socket.io')(server, { cors: {origin: "*"}})
