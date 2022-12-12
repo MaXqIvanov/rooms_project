@@ -10,12 +10,19 @@ export const RoomsPage = () => {
   const dispatch = useAppDispatch()
   const {current_time, current_room, current_user_index} = useSelector((state: RootState)=> state.rooms)
   const refTimer:any = useRef(null)
+  const longPulling:any = useRef(null)
   useEffect(() => {
     dispatch(getCurrentRooms({id: window.location.pathname.split('/')[1]}))
+    longPulling.current = setInterval(()=>{
+      dispatch(getCurrentRooms({id: window.location.pathname.split('/')[1]}))
+    }, 30000)
     refTimer.current = setInterval(()=> {
         dispatch(changeCurrentTime())
     }, 1000)
-    return () => clearInterval(refTimer.current);
+    return () => {
+      clearInterval(refTimer.current)
+      clearInterval(longPulling.current)
+      }
   },[])
   
   return (
@@ -36,7 +43,7 @@ export const RoomsPage = () => {
         </div>
         <div className='bidding__users'>
           {current_room.users?.length > 0 && current_room.users.map((user: IUser, index: number)=>
-              <div className='bidding__users__one_user'>
+              <div key={user._id} className='bidding__users__one_user'>
                 {index === current_user_index && <div className='bidding__users__timer'><div>{`00:0${Math.floor(current_time / 60)}:${(current_time - Math.floor(current_time / 60) * 60) < 10 ? '0' + (current_time - Math.floor(current_time / 60) * 60) : current_time - Math.floor(current_time / 60) * 60}`}</div></div>}
                 <div className='one_user__title'>Участник №{index + 1}</div>
                 <div className='parameters parameters__1'>{user.set_of_measures ? user.set_of_measures : "*"}</div>
