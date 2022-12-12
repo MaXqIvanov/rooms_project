@@ -10,6 +10,10 @@ $title_color: rgb(0, 136, 255);
 }
 .title{
   font-size: 4vw;
+
+  @media(max-width: 550px){
+    font-size: 4vh;
+  }
 }
 
 .rooms__list{
@@ -17,6 +21,7 @@ $title_color: rgb(0, 136, 255);
   height: fit-content;
   display: flex;
   flex-direction: column;
+  
 }
 
 .current_room{
@@ -27,14 +32,26 @@ $title_color: rgb(0, 136, 255);
   border-radius: 5px;
   padding-left: 10px;
   box-sizing: border-box;
+  @media(max-width: 550px){
+    font-size: 2.5vh;
+    padding: 1vh 1vh;
+    margin-top: 2vh;
+  }
 }
 .room{
   padding: 0 1vw;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  @media(max-width: 550px){
+    padding: 0 1vh;
+  }
 }
 .room__title{
   font-size: 2.5vw;
   color: rgb(211, 0, 0);
+
+  @media(max-width: 550px){
+    font-size: 2.2vh;
+  }
 }
 .room__info{
   background: rgb(255, 184, 184);
@@ -43,6 +60,11 @@ $title_color: rgb(0, 136, 255);
   border-radius: 5px;
   font-size: 1.3vw;
   color: rgb(146, 0, 0);
+
+  @media(max-width: 550px){
+    font-size: 1.4vh;
+    padding: 1vh 2vh;
+  }
 }
 .separate_line{
   height: 2px;
@@ -59,6 +81,10 @@ $title_color: rgb(0, 136, 255);
   height: fit-content;
   width: 100%;
   margin-top: 7vw;
+
+  @media(max-width: 550px){
+    margin-top: 5vh;
+  }
 }
 
 .bidding__info{
@@ -69,6 +95,7 @@ $title_color: rgb(0, 136, 255);
   height: fit-content;
 
   .parameters{
+    justify-content: left;
     &:nth-child(odd){
       background-color: hsla(224, 90%, 92%, 0.448);
     }
@@ -88,6 +115,10 @@ $title_color: rgb(0, 136, 255);
   transform: translate(-50%, -50%);
   color: $title_color;
   font-weight: 500;
+
+  @media(max-width: 550px){
+    font-size: 1.3vh;
+  }
 }
 .bidding__users__one_user{
   width: 33.2%;
@@ -102,6 +133,12 @@ $title_color: rgb(0, 136, 255);
   color: $title_color;
   height: 4vw;
   max-height: 4vw;
+
+  @media(max-width: 550px){
+    height: 4vh;
+    max-height: 4vh;
+    font-size: 1.5vh;
+  }
 }
 .bidding__users__timer{
   position: absolute;
@@ -118,12 +155,22 @@ $title_color: rgb(0, 136, 255);
   border-radius: 10px;
   font-size: 1.3vw;
   color: rgb(150, 26, 26);
+
+  @media(max-width: 550px){
+    top: -2.3vh;
+    font-size: 1.4vh;
+  }
 }
 .bidding__info__title{
   height: 4vw;
   font-size: 1.5vw;
   color: $title_color;
   text-align: center;
+
+  @media(max-width: 550px){
+    font-size: 1.5vh;
+    height: 4vh;
+  }
 }
 .parameters{
   font-size: 1.1vw;
@@ -132,6 +179,14 @@ $title_color: rgb(0, 136, 255);
   padding-left: 0.5vw;
   box-sizing: border-box;
   width: 100%;
+
+  @media(max-width: 550px){
+    font-size: 1.2vh;
+    min-height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .parameters__1{
@@ -144,6 +199,12 @@ $title_color: rgb(0, 136, 255);
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; 
   overflow: hidden;
+
+  @media(max-width: 550px){
+    max-height: 3vh;
+    height: 3vh;
+    display: -webkit-box;
+  }
 }
 .parameters__3{
   background-color: hsla(224, 90%, 92%, 0.448);
@@ -154,6 +215,10 @@ $title_color: rgb(0, 136, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media(max-width: 550px){
+    height: 5vh;
+  }
 }
 .lot_price{
   color: blue;
