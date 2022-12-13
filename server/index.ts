@@ -20,8 +20,16 @@ app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.resolve("../") + "/client/build/index.html");
 });
 
-mongoose.connect(db).then((res: Response)=> console.log('Connect is success'))
-    .catch((e:object)=> console.log(e))
-server.listen(port, () => {
-    console.log('We are live on ' + port);
-});
+const setup = ()=>{
+    try {
+        mongoose.connect(db).then((res: Response)=> console.log('Connect is success'))
+        .catch((e:object)=> console.log(e))
+        server.listen(port, () => {
+            console.log('We are live on ' + port);
+        });        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+setup()
