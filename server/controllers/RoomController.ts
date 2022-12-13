@@ -1,14 +1,12 @@
-import { Rooms } from "../models/rooms";
 import {Request, Response} from 'express'
 const IntervalsService  = require('../service/IntervalsService');
+const RoomsService  = require('../service/RoomsService');
 
 class RoomController {
 
     async getRooms(req: Request, res: Response) {
         try {
-            const rooms = await Rooms.find()
-            console.log(rooms)
-
+            const rooms = await RoomsService.getAllRooms()
             return res.json(rooms)
         } catch (error) {       
            return res.status(400).json({message: error})
@@ -21,9 +19,8 @@ class RoomController {
             if(IntervalsService.time[id] === undefined){
                 await IntervalsService.intervalsServiceFunction(id)
             }
-            const room = await Rooms.findById({ _id: id })
+            const room = await RoomsService.getOneRoom(id)
             const {time, user} = await IntervalsService.getCurrentRoomTime(id)
-            console.log(time)
             return res.json({time, user, room})
         } catch (error) {
             return res.status(400).json({message: error})
@@ -32,12 +29,7 @@ class RoomController {
     async createRooms(req: Request, res: Response){
         try {
             const {name, title, users} = req.body
-            const new_room = await Rooms.create({
-                name,
-                title,
-                users,
-            })
-            let time = 0
+            const new_room = await RoomsService.createRoom({name, title, users})
             await IntervalsService.intervalsServiceFunction(new_room._id)
             return res.json(new_room)
         } catch (error) {
@@ -46,29 +38,14 @@ class RoomController {
     }
     async updateRooms(req: Request, res: Response){
         try {
-            const {users} = req.body
+            const {...body} = req.body
             const id = req.params.id
-            console.log(id)
-            console.log(users)
-            const current_room:{_id: object, users: string[]} | null = await Rooms.findOne(
-                {
-                    where: {_id: id},
-                },
-              
-            )
+            const current_room:{_id: string, users: string[]} | null = await RoomsService.getOneRoom(id)
             if(current_room){
-                console.log('work')
-                const new_users = [...current_room.users, users]
-                const room = await Rooms.findOneAndUpdate({
-                    _id: id
-                },{
-                    users: new_users
-                })
-                console.log("this is room")
-                console.log(room)
+                const room = await RoomsService.updateRoom({id, body})
                 return res.json(room)
             }
-            return res.status(200).json('Найти комнату не получилось')
+            return res.status(404).json('Найти комнату не получилось')
         } catch (error) {
             return res.status(400).json({message: error})
         }
@@ -78,12 +55,7 @@ class RoomController {
 
         try {
             const id = req.params.id
-            const room = await Rooms.findByIdAndRemove({
-                _id: id
-            })
-            console.log(id)
-            var mine:any = {};
-            let dddd;
+            const room = await RoomsService.deleteRoom(id)
             await IntervalsService.clearIntervalServiceFunction(id)
             return res.status(200).json(room)
         } catch (error) {

@@ -1,12 +1,11 @@
-import { Users } from "../models/users";
 import {Request, Response} from 'express'
+const UsersService  = require('../service/UsersService');
+
 class UsersController {
 
     async getUsers(req: Request, res: Response) {
         try {
-            const user = await Users.find()
-            console.log(user)
-
+            const user = await UsersService.getUsers()
             return res.json(user)
         } catch (error) {       
            return res.status(400).json({message: error})
