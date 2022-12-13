@@ -1,4 +1,3 @@
-import { io } from "..";
 import { Rooms } from "../models/rooms";
 
 class IntervalsService {
