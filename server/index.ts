@@ -20,9 +20,9 @@ app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.resolve("../") + "/client/build/index.html");
 });
 
-const setup = ()=>{
+const setup = async ()=>{
     try {
-        mongoose.connect(db).then((res: Response)=> console.log('Connect is success'))
+        await mongoose.connect(db).then((res: Response)=> console.log('Connect is success'))
         .catch((e:object)=> console.log(e))
         server.listen(port, () => {
             console.log('We are live on ' + port);
